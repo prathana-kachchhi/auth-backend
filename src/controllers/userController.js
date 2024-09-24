@@ -20,7 +20,7 @@ export const signupUser = async (req, res) => {
 
         const { error } = signupSchema.validate(req.body);
         if (error) {
-            return res.status(400).json({ message: error });
+            return res.status(400).json({ message: error.message });
         }
 
         const user = await User.create({ username, email, password });
@@ -44,7 +44,7 @@ export const loginUser = async (req, res) => {
 
         const { error } = loginSchema.validate(req.body);
         if (error) {
-            return res.status(400).json({ message: error });
+            return res.status(400).json({ message: error.message });
         }
 
         const user = await User.findOne({ email });
