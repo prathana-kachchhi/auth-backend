@@ -1,13 +1,14 @@
 import express from "express";
-import { signupUser, loginUser } from "../controllers/userController.js";
+import signup from "../controllers/user/signupController.js";
+import login from "../controllers/user/signupController.js";
 
 const userRoutes = express.Router();
 
 userRoutes.get("/", (req, res) => {
-    res.status(200).json({ message: "welcome to the user API" } );
+    res.status(200).json({ message: "welcome to the user API" });
 });
 
-userRoutes.post("/signup", signupUser)
-userRoutes.post("/login", loginUser)
+userRoutes.post("/signup", validate(signup.validate), signup.handler)
+userRoutes.post("/login", validate(login.validate), login.handler)
 
 export default userRoutes;
