@@ -1,10 +1,12 @@
 const validate = (schema) => {
     return (req, res, next) => {
-        const { value ,error } = schema.validate(req.body, {stripUnknown: true});
+        const { value, error } = schema.validate(req.body, { stripUnknown: true });
         if (error) {
-            return res.status(400).json({ error: error.details[0].message });
+            return res.status(400).json({ error: error.message });
         }
+
         req.body = value;
+
         next();
     }
 }

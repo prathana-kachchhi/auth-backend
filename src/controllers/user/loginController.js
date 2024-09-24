@@ -1,4 +1,5 @@
 import { JWT_SECRET } from "../../config/db.config.js";
+import jwt from "jsonwebtoken";
 import User from "../../models/user.model.js";
 import joi from "joi";
 import bcrypt from "bcrypt";

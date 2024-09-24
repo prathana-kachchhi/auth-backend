@@ -1,6 +1,7 @@
 import express from "express";
 import signup from "../controllers/user/signupController.js";
-import login from "../controllers/user/signupController.js";
+import login from "../controllers/user/loginController.js";
+import validate from "../middlewares/validation.js";
 
 const userRoutes = express.Router();
 
