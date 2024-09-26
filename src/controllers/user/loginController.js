@@ -26,7 +26,10 @@ export default {
             if (!isMatch) {
                 return res.status(400).json({ message: "Invalid password" });
             }
+
             const token = generateToken(user);
+            user.token = token;
+            await user.save();
             res.status(200).json({ message: "Login successful", token });
         } catch (error) {
             res.status(500).json({ message: error.message });
@@ -42,6 +45,6 @@ const generateToken = (user) => {
         id: user._id,
         iat: Date.now(),
     }
-    const token = jwt.sign(payload, JWT_SECRET);
-    return token;
+    return jwt.sign(payload, JWT_SECRET);
+    
 }

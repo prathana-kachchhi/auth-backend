@@ -18,7 +18,6 @@ export default {
     handler: async (req, res) => {
         try {
             const { username, email, password } = req.body;
-            
             const hashedPassword = await bcrypt.hash(password, 10);
             const user = await User.create({ username, email, password: hashedPassword });
             res.status(200).json({ message: "User created successfully", user });
